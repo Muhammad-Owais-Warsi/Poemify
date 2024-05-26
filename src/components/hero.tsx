@@ -11,7 +11,7 @@ export default function Hero() {
         className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
       >
         <h2 className="text-white text-2xl md:text-6xl font-bold text-center mt-8 md:mt-16">
-          Lens to Lyric
+          Image to Verse
         </h2>
         <p className="text-white text-sm md:text-2xl max-w-xl text-center mt-4 md:mt-8">
           Every picture has a poem, let us find yours.
@@ -19,7 +19,7 @@ export default function Hero() {
         <div className="mt-6 md:mt-8 w-full flex justify-center">
           <Input />
         </div>
-        <div className="mt-4 md:mt-6 w-full flex justify-center">
+        <div className="mt-4 md:mt-6 flex justify-center">
           <Button />
         </div>
       </Vortex>
