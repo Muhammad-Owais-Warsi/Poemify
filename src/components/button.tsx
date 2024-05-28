@@ -7,10 +7,11 @@ import ImageBtn from "./imageBtn";
 
 
 type ButtonProp =  {
-    prop: boolean;
+    isSubmit: boolean;
+    setIsSubmit:React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Button({prop}: ButtonProp) {
+export default function Button({isSubmit,setIsSubmit}: ButtonProp) {
     const inputFileRef = useRef<HTMLInputElement>(null);
     const [imageDataURL, setImageDataURL] = useState<string | null>(null);
     const { updateForm } = useFormContext();
@@ -26,11 +27,12 @@ export default function Button({prop}: ButtonProp) {
         if (selectedFile) {
             if (selectedFile.type.startsWith("image/")) {
                 const reader = new FileReader();
-
+                
                 reader.onload = () => {
                     setImageDataURL(reader.result as string);
                 };
                 updateForm("image", selectedFile);
+                setIsSubmit(false);
                 reader.readAsDataURL(selectedFile);
             } else {
                 toast.error("Please select an image file.");
@@ -58,7 +60,7 @@ export default function Button({prop}: ButtonProp) {
                     onChange={handleFileSelection}
                 />
                 {/* Image preview */}
-                {imageDataURL && !prop && <ImageBtn url={imageDataURL} />}
+                {imageDataURL && !isSubmit && <ImageBtn url={imageDataURL} />}
             </div>
         </div>
     );

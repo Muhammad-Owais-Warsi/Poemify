@@ -36,7 +36,7 @@ export default function Input() {
         onSubmit={onSubmit}
       />
       <div className="mt-4 md:mt-6">
-        <Button prop={isSubmit}/>
+        <Button isSubmit={isSubmit} setIsSubmit={setIsSubmit}/>
       </div>
     </div>
 
