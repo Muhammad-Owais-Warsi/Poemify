@@ -3,7 +3,7 @@ import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
 import { useFormContext } from "@/context/formContext";
 import { toast } from "sonner";
 import Button from "./button";
-import { SubmitProvider } from "@/context/submitContext";
+
 
 export default function Input() {
   const placeholders = [
@@ -28,17 +28,17 @@ export default function Input() {
   };
 
   return (
-    <SubmitProvider>
-      <div className="w-screen z-30 flex flex-col items-center justify-center">
-        <PlaceholdersAndVanishInput
-          placeholders={placeholders}
-          onChange={handleChange}
-          onSubmit={onSubmit}
-        />
-        <div className="mt-4 md:mt-6">
-          {isSubmit ? null : <Button />}
-        </div>
+
+    <div className="w-screen z-30 flex flex-col items-center justify-center">
+      <PlaceholdersAndVanishInput
+        placeholders={placeholders}
+        onChange={handleChange}
+        onSubmit={onSubmit}
+      />
+      <div className="mt-4 md:mt-6">
+        <Button prop={isSubmit}/>
       </div>
-    </SubmitProvider>
+    </div>
+
   );
 }

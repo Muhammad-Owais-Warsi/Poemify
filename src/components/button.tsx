@@ -6,8 +6,11 @@ import { useFormContext } from "@/context/formContext";
 import ImageBtn from "./imageBtn";
 
 
+type ButtonProp =  {
+    prop: boolean;
+}
 
-export default function Button() {
+export default function Button({prop}: ButtonProp) {
     const inputFileRef = useRef<HTMLInputElement>(null);
     const [imageDataURL, setImageDataURL] = useState<string | null>(null);
     const { updateForm } = useFormContext();
@@ -55,9 +58,7 @@ export default function Button() {
                     onChange={handleFileSelection}
                 />
                 {/* Image preview */}
-                {imageDataURL  && (
-                    <ImageBtn url={imageDataURL}/>
-                )}
+                {imageDataURL && !prop && <ImageBtn url={imageDataURL} />}
             </div>
         </div>
     );
