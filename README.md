@@ -1,2 +1,2 @@
 # Poemify
-An AI application which turn images to poems.
+An AI application that turn images to poems.
