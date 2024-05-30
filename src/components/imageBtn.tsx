@@ -1,17 +1,14 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
+import ModalBox from "./ui/modal";
 
 type ImageBtnProps = {
-    url: string | null;
+    url: string;
 }
 
 const ImageBtn: React.FC<ImageBtnProps> = ({ url }) => {
-    const openImage = () => {
-        if (url) {
-            window.open(url, '_blank');
-        }
-    };
+    const [isModal, setIsModal] = useState<boolean>(false);
 
     return (
         <div className="mt-10 relative max-w-[350px] mx-auto flex flex-col-reverse sm:flex-row justify-between space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 bottom-4 ">
@@ -19,10 +16,20 @@ const ImageBtn: React.FC<ImageBtnProps> = ({ url }) => {
                 Remove
             </button>
             <button
-                onClick={openImage}
+                onClick={() => setIsModal(true)}
                 className="shadow-[inset_0_0_0_2px_#616467] text-black px-4 py-2 rounded-full tracking-widest uppercase font-bold bg-transparent hover:bg-[#616467] hover:text-white dark:text-neutral-200 transition duration-200 w-full sm:w-screen sm:top-[0.1px] bottom-2 relative h-10">
                 View Image
             </button>
+            {isModal && (
+                <>
+                    <div className="fixed inset-0 flex items-center justify-center z-50">
+                        <div className="bg-white w-80 p-6 rounded-lg shadow-lg relative">
+                            <ModalBox setIsModal={setIsModal} url={url}/>
+                        </div>
+                    </div>
+                    <div className="fixed inset-0 bg-black opacity-50 z-40" onClick={() => setIsModal(false)}></div>
+                </>
+            )}
         </div>
     );
 };

@@ -1,51 +1,20 @@
-import React from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button} from "@nextui-org/react";
-
-
-
-
 type ModalType = {
-    onPress:any;
-    onOpenChange:any;
+  setIsModal: (value: boolean) => void;
+  url:string;
 }
 
-export default function ModalBox({onPress,onOpenChange} : ModalType) {
+const ModalBox: React.FC<ModalType> = ({ setIsModal,url }) => {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <img src={url} alt="Image" />
+      <button
+        className="my-5 w-auto px-8 h-10 bg-blue-600 text-white rounded-md shadow hover:shadow-lg font-semibold"
+        onClick={() => setIsModal(false)}
+      >
+        Close
+      </button>
+    </div>
+  );
+};
 
-    
-
-    return (
-        <Modal isOpen={onPress} onOpenChange={onOpenChange} backdrop={"blur"} size={"lg"}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
-              <ModalBody>
-                <p> 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
-                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
-                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
-                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose} >
-                  Close
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-    )
-}
+export default ModalBox;
