@@ -50,7 +50,7 @@ export default function Button({isSubmit, setIsSubmit}: ButtonProp) {
                 
                 reader.onload = () => {
                     setImageDataURL(reader.result as string);
-                    const base64 = reader.result.split(',')[1];
+                    const base64 = reader.result ? reader.result.split(',')[1] : null;
                     updateForm("image",base64); // Extracting base64 data
                     
                 };
