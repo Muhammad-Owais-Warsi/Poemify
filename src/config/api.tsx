@@ -6,7 +6,7 @@ export class API {
 
 
     constructor() {
-        this.genAI = new GoogleGenerativeAI("AIzaSyAxmxkZMErASgIiFP-nbHJQOLIlRKW6yk4");
+        this.genAI = new GoogleGenerativeAI("");
     }
     async generate(prompt: string, image: string) {
         const model = this.genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest"});
