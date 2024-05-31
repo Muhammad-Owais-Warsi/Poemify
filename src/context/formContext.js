@@ -12,7 +12,7 @@ export const useFormContext = () => {
 export const FormProvider = ({ children }) => {
     const [formData, setFormData] = useState({
       text: "",
-      image: null,
+      image: "",
     });
   
     const updateForm = (key, value) => {

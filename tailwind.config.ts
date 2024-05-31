@@ -17,8 +17,8 @@ module.exports = {
     extend: {
       animation: {
         shimmer: "shimmer 2s linear infinite",
+        "meteor-effect": "meteor 5s linear infinite",
       },
-      
       keyframes: {
         shimmer: {
           from: {
@@ -28,6 +28,14 @@ module.exports = {
             backgroundPosition: "-200% 0",
           },
         },
+        meteor: {
+          "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+          "70%": { opacity: "1" },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: "0",
+          },
+        },
       },
     },
   },
@@ -35,7 +43,7 @@ module.exports = {
 };
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
-function addVariablesForColors({ addBase, theme }:any) {
+function addVariablesForColors({ addBase, theme } : any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])

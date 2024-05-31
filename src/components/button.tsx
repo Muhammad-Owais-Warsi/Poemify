@@ -21,16 +21,38 @@ export default function Button({isSubmit, setIsSubmit}: ButtonProp) {
         }
     };
 
+    // const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const selectedFile = event.target.files?.[0];
+    //     console.log(selectedFile)
+    //     if (selectedFile) {
+    //         if (selectedFile.type.startsWith("image/")) {
+    //             const reader = new FileReader();
+                
+    //             reader.onload = () => {
+    //                 setImageDataURL(reader.result as string);
+                
+    //             };
+    //             updateForm("image", reader.result);
+    //             setIsSubmit(false);
+    //             reader.readAsDataURL(selectedFile);
+    //         } else {
+    //             toast.error("Please select an image file.");
+    //         }
+    //     }
+    // };
+
     const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0];
+        console.log(selectedFile)
         if (selectedFile) {
             if (selectedFile.type.startsWith("image/")) {
                 const reader = new FileReader();
                 
                 reader.onload = () => {
                     setImageDataURL(reader.result as string);
+                    updateForm("image", reader.result.split(',')[1]); // Extracting base64 data
+                    
                 };
-                updateForm("image", selectedFile);
                 setIsSubmit(false);
                 reader.readAsDataURL(selectedFile);
             } else {
@@ -38,6 +60,8 @@ export default function Button({isSubmit, setIsSubmit}: ButtonProp) {
             }
         }
     };
+    
+    
 
     return (
         <div className="flex flex-col justify-center items-center h-full w-full">

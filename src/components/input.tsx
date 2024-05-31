@@ -3,6 +3,8 @@ import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
 import { useFormContext } from "@/context/formContext";
 import { toast } from "sonner";
 import Button from "./button";
+import api from "@/config/api";
+
 
 
 export default function Input() {
@@ -12,18 +14,27 @@ export default function Input() {
 
   const { formData, updateForm } = useFormContext();
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
+  const [isPoem,setPoem] = useState<String>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateForm("text", e.target.value);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.text === null || formData.image === null) {
       toast.warning('Missing');
+      console.log(formData)
     } else {
+      console.log(formData)
       toast.success('Well done');
       setIsSubmit(true);
+      const poem = await api.generate(formData.text,formData.image);
+      setPoem(poem)
+     
+      
     }
   };
 
@@ -38,6 +49,13 @@ export default function Input() {
       <div className="mt-4 md:mt-6">
         <Button isSubmit={isSubmit} setIsSubmit={setIsSubmit}/>
       </div>
+      {
+        isPoem && (
+          <div>
+            {isPoem}
+          </div>
+        )
+      }
     </div>
 
   );

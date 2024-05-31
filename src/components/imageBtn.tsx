@@ -12,7 +12,9 @@ const ImageBtn: React.FC<ImageBtnProps> = ({ url }) => {
 
     return (
         <div className="mt-10 relative max-w-[350px] mx-auto flex flex-col-reverse sm:flex-row justify-between space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 bottom-4 ">
-            <button className="shadow-[0_0_0_3px_#000000_inset] px-4 py-2 bg-transparent border border-red-500 dark:border-red-500 dark:text-red-500 text-red-500 rounded-lg font-bold w-full sm:w-auto h-10">
+            <button className="shadow-[0_0_0_3px_#000000_inset] px-4 py-2 bg-transparent border border-red-500 dark:border-red-500 dark:text-red-500 text-red-500 rounded-lg font-bold w-full sm:w-auto h-10"
+                onClick={() => window.location.reload()}
+            >
                 Remove
             </button>
             <button
