@@ -11,7 +11,7 @@ export const useFormContext = () => {
 
 export const FormProvider = ({ children }) => {
     const [formData, setFormData] = useState({
-      text: "Write a rhyming poem on this given picture. The poem should be of 3 para witha a title, each line should contains 7-8 words. Return it as a object with title and poem" | "",
+      text: "Write a rhyming poem on this given picture. The poem should be of 3 para witha a title, each line should contains 7-8 words. Return it as a object with title and poem"
       image:"",
     });
   
