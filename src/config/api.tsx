@@ -1,12 +1,16 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
+
+
 export class API {
     genAI: any;
    
 
 
     constructor() {
-        this.genAI = new GoogleGenerativeAI("AIzaSyAxmxkZMErASgIiFP-nbHJQOLIlRKW6yk4");
+        
+        this.genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
+        
     }
     async generate(prompt: string, image: string) {
         const model = this.genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest"});

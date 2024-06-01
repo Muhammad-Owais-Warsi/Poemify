@@ -13,6 +13,7 @@
     "@nextui-org/modal": "^2.0.34",
     "@nextui-org/react": "^2.4.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "framer-motion": "^11.2.6",
     "next": "14.2.3",
     "react": "^18",
