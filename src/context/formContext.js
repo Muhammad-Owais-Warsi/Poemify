@@ -17,7 +17,7 @@ export const FormProvider = ({ children }) => {
     const updateForm = (key, value) => {
         setFormData((prev) => ({
             ...prev,
-            [key]: key === 'text' ? `${prev[key]} ${value}` : value,
+            [key]: value,
         }));
     };
 
