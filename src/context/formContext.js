@@ -8,23 +8,22 @@ export const useFormContext = () => {
     return useContext(FormContext);
 };
 
-
 export const FormProvider = ({ children }) => {
     const [formData, setFormData] = useState({
-      text: "Write a rhyming poem on this given picture. The poem should be of 3 para witha a title, each line should contains 7-8 words. Return it as a object with title and poem"
-      image:"",
+        text: "Write a rhyming poem on this given picture. The poem should be of 3 para with a title, each line should contain rhymes.",
+        image: "",
     });
-  
+
     const updateForm = (key, value) => {
-      setFormData((prev) => ({
-        ...prev,
-        [key]: value,
-      }));
+        setFormData((prev) => ({
+            ...prev,
+            [key]: key === 'text' ? `${prev[key]} ${value}` : value,
+        }));
     };
-  
+
     return (
-      <FormContext.Provider value={{ formData, updateForm }}>
-        {children}
-      </FormContext.Provider>
+        <FormContext.Provider value={{ formData, updateForm }}>
+            {children}
+        </FormContext.Provider>
     );
 };
