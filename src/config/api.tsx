@@ -8,9 +8,7 @@ export class API {
 
 
     constructor() {
-        
         this.genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
-        
     }
     async generate(prompt: string, image: string) {
         const model = this.genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest"});
