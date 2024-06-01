@@ -21,7 +21,7 @@ export default function Button({isSubmit, setIsSubmit}: ButtonProp) {
         }
     };
 
-    // const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
+    
     //     const selectedFile = event.target.files?.[0];
     //     console.log(selectedFile)
     //     if (selectedFile) {

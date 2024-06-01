@@ -1,12 +1,10 @@
-'use client'
-
 import React, { useState } from "react";
 import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
 import { useFormContext } from "@/context/formContext";
 import { toast } from "sonner";
 import Button from "./button";
+import { useRouter } from "next/navigation"; // Changed import
 import api from "@/config/api";
-import { useRouter } from "next/navigation";
 
 export default function Input() {
   const placeholders = [
@@ -15,7 +13,7 @@ export default function Input() {
 
   const { formData, updateForm } = useFormContext();
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
-  const [isPoem, setPoem] = useState<String>("");
+  const [isPoem, setPoem] = useState<string>("");
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,18 +30,27 @@ export default function Input() {
       setIsSubmit(true);
 
       const generatePoemPromise = async () => {
-        const poem = await api.generate(formData.text, formData.image);
-        setPoem(poem);
-        return poem;
+        try {
+          const poem = await api.generate(formData.text, formData.image);
+          setPoem(poem);
+          return poem;
+        } catch (error) {
+          throw new Error('Error generating poem');
+        }
       };
 
-      toast.promise(generatePoemPromise, {
+      toast.promise(generatePoemPromise(), {
         loading: 'Redirecting',
-        success: () => {
-          router.push("/poem");
-          return "Success"
+        success: (data) => {
+          console.log(data);
+          console.log(typeof(data));
+          router.push(`/poem?data=${encodeURIComponent(JSON.stringify(data))}`); // Serialized data before passing
+          return "Success";
         },
-        error: 'Error generating poem',
+        error: (error) => {
+          console.error(error);
+          return 'Error generating poem';
+        },
       });
     }
   };

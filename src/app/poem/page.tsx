@@ -1,11 +1,15 @@
 
-import { PoemCard } from "@/components/poemCard"
+
 import { PoemBackground } from "@/components/poemBackground"
+import { FormProvider } from "@/context/formContext"
+
 
 export default function Poem() {
     return(
-        <>
-            <PoemBackground/>
-        </>
+        
+           <FormProvider>
+             <PoemBackground/>
+           </FormProvider>
+      
     )
 }
