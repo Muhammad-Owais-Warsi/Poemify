@@ -31,7 +31,7 @@ export default function Input() {
 
       const generatePoemPromise = async () => {
         try {
-          const poem = await api.generate(formData.text, formData.image);
+          const poem = await api.generate("Write a rhyming poem on this given picture. The poem should be of 3 para witha a title, each line should contains 7-8 words. Return it as a object with title and poem"+formData.text, formData.image);
           setPoem(poem);
           return poem;
         } catch (error) {
