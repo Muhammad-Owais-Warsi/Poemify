@@ -61,8 +61,11 @@ Contributions are welcome! If you'd like to contribute to Poemify, please follow
 Contributions are welcome! Here's how you can contribute to Poemify:
 
 - **Star and Fork the Repository**: Show your support by starring the repository and fork it to your account.
+  
 - **Raise an Issue**: Before raising a new issue, please check if a similar issue already exists. If not, feel free to raise a new one detailing the problem or suggestion.
+  
 - **Create a New Branch**: When working on a new feature or bug fix, create a new branch for your changes. This keeps the main branch clean and makes it easier to manage different features.
+  
 - **Be Respectful and Helpful**: Collaborate with others in a respectful manner. Offer constructive feedback and strive to improve the project together.
 
 
