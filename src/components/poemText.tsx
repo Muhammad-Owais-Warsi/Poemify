@@ -12,7 +12,6 @@ export function PoemText() {
     if (queryData) {
       try {
         const deserializedData = JSON.parse(decodeURIComponent(queryData));
-        console.log("Deserialized data:", deserializedData);
 
         const titleMatch = deserializedData.match(/"title": "([^"]+)"/);
 const title = titleMatch ? titleMatch[1] : "";
@@ -21,12 +20,11 @@ const title = titleMatch ? titleMatch[1] : "";
 const poemMatch = deserializedData.match(/"poem": "([^"]+)"/);
 const poem = poemMatch ? poemMatch[1] : "";
 
-        
+
           setTitle(title);
           setPoem(poem);
-  
-          console.error("Deserialized data does not contain the required fields.");
-        
+
+
       } catch (error) {
         console.error("Error parsing query data:", error);
       }
