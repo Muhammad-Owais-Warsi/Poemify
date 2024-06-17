@@ -24,9 +24,7 @@ export default function Input() {
     e.preventDefault();
     if (!formData.text || !formData.image) {
       toast.warning('Missing form data');
-      console.log(formData);
     } else {
-      console.log(formData);
       setIsSubmit(true);
 
       const generatePoemPromise = async () => {
@@ -42,8 +40,6 @@ export default function Input() {
       toast.promise(generatePoemPromise(), {
         loading: 'Redirecting',
         success: (data) => {
-          console.log(data);
-          console.log(typeof(data));
           router.push(`/poem?data=${encodeURIComponent(JSON.stringify(data))}`); // Serialized data before passing
           return "Success";
         },
@@ -65,11 +61,6 @@ export default function Input() {
       <div className="mt-4 md:mt-6">
         <Button isSubmit={isSubmit} setIsSubmit={setIsSubmit} />
       </div>
-      {isPoem && (
-        <div>
-          {isPoem}
-        </div>
-      )}
     </div>
   );
 }

@@ -4,7 +4,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 export class API {
     genAI: any;
-   
+
 
 
     constructor() {
@@ -20,13 +20,12 @@ export class API {
         };
 
         // Create an array containing the inlineData object
-        
+
 
         // Spread the imageParts array within the generateContent method call
         const result = await model.generateContent([prompt,{inlineData}]);
         const response = await result.response;
 
-        console.log(response.text);
         return response.text();
     }
 
