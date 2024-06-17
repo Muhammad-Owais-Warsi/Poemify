@@ -80,7 +80,10 @@ For any questions, feedback, or inquiries, please contact us at [mail](mailto:wa
 <div align = "center">
  <h4>Thank you for contributing to our repository</h4>
 
-![Contributors](https://contrib.rocks/image?repo=Muhammad-Owais-Warsi/Poemify)
+<a href="https://github.com/Muhammad-Owais-Warsi/Poemify/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Muhammad-Owais-Warsi/Poemify" />
+</a>
+
 
 </div>
 
