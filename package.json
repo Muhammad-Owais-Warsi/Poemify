@@ -15,6 +15,7 @@
     "@google/generative-ai": "^0.12.0",
     "@nextui-org/modal": "^2.0.34",
     "@nextui-org/react": "^2.4.0",
+    "@types/uuid": "^9.0.8",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.2.6",
