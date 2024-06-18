@@ -9,7 +9,7 @@ export function PoemCard() {
 
   return (
     <div className="z-40 flex justify-center items-center">
-      <div className="w-full max-w-lg relative h-[48rem]">
+      <div className="w-full max-w-lg relative">
         <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.90] rounded-full blur-3xl" />
         <div className="relative shadow-xl bg-gray-900 border border-gray-800 px-6 py-10 h-full overflow-hidden rounded-2xl flex flex-col justify-between items-start">
 
