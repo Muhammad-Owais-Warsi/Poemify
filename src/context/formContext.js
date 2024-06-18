@@ -11,7 +11,7 @@ export const useFormContext = () => {
 export const FormProvider = ({ children }) => {
     const [formData, setFormData] = useState({
         text: "Write a rhyming poem on this given picture. The poem should be of 3 para with a title, each line should contain rhymes.",
-        image: "",
+        images: [],
     });
 
     const updateForm = (key, value) => {

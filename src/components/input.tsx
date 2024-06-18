@@ -22,14 +22,14 @@ export default function Input() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formData.text || !formData.image) {
+    if (!formData.text || formData.images.length === 0) {
       toast.warning('Missing form data');
     } else {
       setIsSubmit(true);
 
       const generatePoemPromise = async () => {
         try {
-          const prompt: string = `Using the provided image and text, write a rhyming poem with the following specifications:
+          const prompt: string = `Using the provided images and text, write a rhyming poem with the following specifications:
             - Title: Create an engaging title for the poem.
             - Poem: Write a 3-paragraph poem, each line containing 7-8 words.
             Return the result as a JSON object with the following structure:
@@ -38,7 +38,7 @@ export default function Input() {
               "poem": "First paragraph of the poem.\nSecond paragraph of the poem.\nThird paragraph of the poem."
             }`;
 
-          const poem = await api.generate(prompt + formData.text, formData.image);
+          const poem = await api.generate(prompt + formData.text, formData.images);
           setPoem(poem);
           return poem;
         } catch (error) {

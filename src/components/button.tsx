@@ -4,16 +4,22 @@ import React, { useRef, useState } from "react";
 import { toast, Toaster } from "sonner";
 import { useFormContext } from "@/context/formContext";
 import ImageBtn from "./imageBtn";
+import { v4 as uuidv4 } from 'uuid';
 
-type ButtonProp =  {
+type ButtonProp = {
     isSubmit: boolean;
     setIsSubmit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Button({isSubmit, setIsSubmit}: ButtonProp) {
+type ImageData = {
+    id: string;
+    url: string;
+}
+
+export default function Button({ isSubmit, setIsSubmit }: ButtonProp) {
     const inputFileRef = useRef<HTMLInputElement>(null);
-    const [imageDataURL, setImageDataURL] = useState<string | null>(null);
-    const { updateForm } = useFormContext();
+    const [imageData, setImageData] = useState<ImageData[]>([]);
+    const { formData, updateForm } = useFormContext();
 
     const openFileExplorer = () => {
         if (inputFileRef.current) {
@@ -21,52 +27,46 @@ export default function Button({isSubmit, setIsSubmit}: ButtonProp) {
         }
     };
 
-
-    //     const selectedFile = event.target.files?.[0];
-    //     console.log(selectedFile)
-    //     if (selectedFile) {
-    //         if (selectedFile.type.startsWith("image/")) {
-    //             const reader = new FileReader();
-
-    //             reader.onload = () => {
-    //                 setImageDataURL(reader.result as string);
-
-    //             };
-    //             updateForm("image", reader.result);
-    //             setIsSubmit(false);
-    //             reader.readAsDataURL(selectedFile);
-    //         } else {
-    //             toast.error("Please select an image file.");
-    //         }
-    //     }
-    // };
-
     const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedFile = event.target.files?.[0];
-        if (selectedFile) {
-            if (selectedFile.type.startsWith("image/")) {
-                const reader = new FileReader();
+        const files = event.target.files;
+        if (files) {
+            const newImageData: ImageData[] = [];
+            const readers = [];
 
-                reader.onload = () => {
-                    setImageDataURL(reader.result as string);
-                    let base64: string | null = null;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.type.startsWith("image/")) {
+                    const reader = new FileReader();
 
-                    if (typeof reader.result === "string") {
-                        base64 = reader.result.split(',')[1];
-                    }
-
-                    updateForm("image",base64); // Extracting base64 data
-
-                };
-                setIsSubmit(false);
-                reader.readAsDataURL(selectedFile);
-            } else {
-                toast.error("Please select an image file.");
+                    readers.push(new Promise<void>((resolve) => {
+                        reader.onload = () => {
+                            const base64 = (reader.result as string).split(',')[1];
+                            const id = uuidv4();
+                            newImageData.push({ id, url: reader.result as string });
+                            resolve();
+                        };
+                        reader.readAsDataURL(file);
+                    }));
+                } else {
+                    toast.error("Please select an image file.");
+                }
             }
+
+            Promise.all(readers).then(() => {
+                setImageData((prev) => [...prev, ...newImageData]);
+                const newImages = newImageData.map(image => image.url.split(',')[1]);
+                updateForm("images", [...formData.images, ...newImages]); // Append new images to the existing array
+                setIsSubmit(false);
+            });
         }
     };
 
-
+    const handleRemoveImage = (id: string) => {
+        const updatedImageData = imageData.filter((image) => image.id !== id);
+        setImageData(updatedImageData);
+        const updatedImages = updatedImageData.map(image => image.url.split(',')[1]);
+        updateForm("images", updatedImages); // Update the form context with the remaining images
+    };
 
     return (
         <div className="flex flex-col justify-center items-center h-full w-full">
@@ -81,14 +81,17 @@ export default function Button({isSubmit, setIsSubmit}: ButtonProp) {
                 <input
                     type="file"
                     accept="image/*"
+                    multiple
                     ref={inputFileRef}
                     style={{ display: "none" }}
                     onChange={handleFileSelection}
                 />
-                {/* Image preview */}
-                {imageDataURL && !isSubmit && (
-                    <div className="w-full mt-4">
-                        <ImageBtn url={imageDataURL} />
+                {/* Image previews */}
+                {imageData.length > 0 && !isSubmit && (
+                    <div className={`w-full mt-4 ${imageData.length === 1 ? 'flex justify-center' : 'grid grid-cols-2 gap-4'}`}>
+                        {imageData.map(({ id, url }) => (
+                            <ImageBtn key={id} id={id} url={url} onRemove={() => handleRemoveImage(id)} />
+                        ))}
                     </div>
                 )}
             </div>
