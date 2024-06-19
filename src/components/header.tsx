@@ -13,6 +13,20 @@ const Header = () => {
                     <div className="flex space-x-4">
                         <div>
                             <a href="/" className="flex items-center py-5 px-2 text-white hover:text-gray-200">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="white"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                className="w-8 h-8 mx-2"
+                            >
+                                <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9-9-1.8-9-9 1.8-9 9-9"></path>
+                            </svg>
                                 <span className="font-bold">Poemify</span>
                             </a>
                         </div>
