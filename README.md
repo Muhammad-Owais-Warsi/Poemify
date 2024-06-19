@@ -76,14 +76,6 @@ For any questions, feedback, or inquiries, please contact us at [mail](mailto:wa
 
 
 
-<h2>Our Contributors ❤️</h2>
-<div align = "center">
- <h4>Thank you for contributing to our repository</h4>
-
-<a href="https://github.com/Muhammad-Owais-Warsi/Poemify/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Muhammad-Owais-Warsi/Poemify" />
-</a>
-</div>
 
 
 
