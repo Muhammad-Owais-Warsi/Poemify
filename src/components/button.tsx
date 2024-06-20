@@ -18,6 +18,7 @@ type ImageData = {
 
 
 
+
 export default function Button({ isSubmit, setIsSubmit }: ButtonProp) {
     const inputFileRef = useRef<HTMLInputElement>(null);
     const [imageData, setImageData] = useState<ImageData[]>([]);
