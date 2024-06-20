@@ -1,21 +1,12 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
-import Lottie from "react-lottie";
+import Player from "lottie-react";
 import { Toaster } from 'sonner';
 import { FormProvider } from "@/context/formContext";
 import Hero from "@/components/hero";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import * as location from "./1055-world-locations.json";
-
-const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: location.default,
-  rendererSettings: {
-    preserveAspectRatio: "xMidYMid slice",
-  },
-};
+import location from "./1055-world-locations.json"; // Directly import the JSON
 
 function Spinner() {
   const [completed, setCompleted] = useState(false);
@@ -30,9 +21,11 @@ function Spinner() {
     <div className="min-h-screen flex flex-col bg-black">
       {!completed ? (
         <div className="flex flex-grow justify-center items-center">
-          <Lottie
-            options={defaultOptions}
-            width={"250px"}
+          <Player
+            animationData={location}
+            loop
+            autoplay
+            style={{ width: 250, height: 250 }}
           />
         </div>
       ) : (
