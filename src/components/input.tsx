@@ -23,7 +23,7 @@ export default function Input() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.text || formData.images.length === 0) {
-      toast.warning('Missing form data');
+      toast.warning("Please enter some text");
     } else {
       setIsSubmit(true);
 
@@ -38,23 +38,26 @@ export default function Input() {
               "poem": "First paragraph of the poem.\nSecond paragraph of the poem.\nThird paragraph of the poem."
             }`;
 
-          const poem = await api.generate(prompt + formData.text, formData.images);
+          const poem = await api.generate(
+            prompt + formData.text,
+            formData.images
+          );
           setPoem(poem);
           return poem;
         } catch (error) {
-          throw new Error('Error generating poem');
+          throw new Error("Error while generating a poem");
         }
       };
 
       toast.promise(generatePoemPromise(), {
-        loading: 'Redirecting',
+        loading: "Redirecting",
         success: (data) => {
           router.push(`/poem?data=${encodeURIComponent(JSON.stringify(data))}`); // Serialized data before passing
           return "Success";
         },
         error: (error) => {
           console.error(error);
-          return 'Error generating poem';
+          return "Error while generating a poem";
         },
       });
     }
