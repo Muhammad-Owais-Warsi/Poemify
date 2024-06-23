@@ -1,3 +1,4 @@
+
 import Hero from "@/components/landing/Hero";
 
 export default function App() {
@@ -6,4 +7,4 @@ export default function App() {
             <Hero/>
         </>
     )
-}
+
