@@ -10,6 +10,7 @@ import location from "./1055-world-locations.json"; // Directly import the JSON
 
 function Spinner() {
   const [completed, setCompleted] = useState(false);
+  
 
   useEffect(() => {
     setTimeout(() => {
