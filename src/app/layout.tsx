@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Head from "next/head";
 import "./globals.css";
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import React from "react";
-import Header from "@/components/Header";
-import {Toaster} from "sonner";
-import AuthProvider from "@/context/AuthProvider";
-import {UIProvider} from "@/context/UIProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,18 +15,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
-        <UIProvider>
-            <AuthProvider>
-                <Header />
-                {children}
-            </AuthProvider>
-        </UIProvider>
-        <Toaster richColors position="top-center" />
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

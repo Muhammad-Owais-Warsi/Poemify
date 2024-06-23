@@ -21,7 +21,6 @@
     "framer-motion": "^11.2.6",
     "lottie-react": "^2.3.3",
     "next": "14.2.3",
-    "next-auth": "^5.0.0-beta.19",
     "pako": "^2.1.0",
     "parse-json": "^8.1.0",
     "react": "^18",
