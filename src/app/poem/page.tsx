@@ -1,5 +1,3 @@
-
-
 import { PoemBackground } from "@/components/poemBackground"
 import { FormProvider } from "@/context/formContext"
 
