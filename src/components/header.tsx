@@ -7,6 +7,7 @@ const Header = () => {
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
   return (
     <nav className="bg-black mb-6">
       <div className="max-w-6xl mx-auto px-4">
@@ -24,9 +25,9 @@ const Header = () => {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="w-8 h-8 mx-2"
                 >
                   <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9-9-1.8-9-9 1.8-9 9-9"></path>
@@ -93,16 +94,16 @@ const Header = () => {
       <div
         className={`mobile-menu ${isMobileMenuOpen ? "" : "hidden"} md:hidden`}
       >
-        <a href="/" className="block py-2 px-4 text-sm bg-gray-200">
+        <Link href="/" className="block py-2 px-4 text-sm">
           Home
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://github.com/Muhammad-Owais-Warsi/Poemify"
           target="_blank"
-          className="block py-2 px-4 text-sm bg-gray-200"
+          className="block py-2 px-4 text-sm "
         >
           Contact Us
-        </a>
+        </Link>
       </div>
     </nav>
   );

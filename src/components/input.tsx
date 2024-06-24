@@ -64,7 +64,7 @@ export default function Input() {
   };
 
   return (
-    <div className="w-screen z-30 flex flex-col items-center justify-center">
+    <div className="mt-5">
       <PlaceholdersAndVanishInput
         placeholders={placeholders}
         onChange={handleChange}
