@@ -1,10 +1,18 @@
-import React from "react";
+import React {useState} from "react";
 import { Meteors } from "./ui/meteors";
 import { PoemText } from "./poemText";
 
 
 export function PoemCard() {
-
+  const [state,setstate]=useState(false)
+const  handle= async ()=>{
+   await setstate(true)
+    window.print({
+      printable: 'content',
+      type: 'html',
+      style: '@page {size: A4; margin: 0.5cm;}'
+  });
+  }
 
 
   return (
@@ -18,8 +26,8 @@ export function PoemCard() {
             <PoemText />
           </div>
 
-          <button className="border px-4 py-2 rounded-lg border-gray-500 text-gray-300">
-            Explore
+          <button className="border px-4 py-2 rounded-lg border-gray-500 text-gray-300" onClick={handle}>
+            {state?"saved":"explore"}
           </button>
 
           {/* Meteor effect */}
