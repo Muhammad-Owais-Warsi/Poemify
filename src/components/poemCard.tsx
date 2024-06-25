@@ -4,6 +4,13 @@ import { PoemText } from "./poemText";
 
 
 export function PoemCard() {
+  const handle=()=>{
+    window.print({
+      printable: 'content',
+      type: 'html',
+      style: '@page { size: A4; margin: 0.5cm; }'
+  });
+  }
 
 
 
@@ -18,7 +25,7 @@ export function PoemCard() {
             <PoemText />
           </div>
 
-          <button className="border px-4 py-2 rounded-lg border-gray-500 text-gray-300">
+          <button className="border px-4 py-2 rounded-lg border-gray-500 text-gray-300" onClick={handle}>
             Explore
           </button>
 
