@@ -5,9 +5,11 @@ import { FormProvider } from "@/context/formContext"
 export default function Poem() {
     return(
         
-           <FormProvider>
-             <PoemBackground/>
+           <FormProvider >
+            <PoemBackground/>
            </FormProvider>
+             
+           
       
     )
 }

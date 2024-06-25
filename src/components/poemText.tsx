@@ -33,7 +33,7 @@ const poem = poemMatch ? poemMatch[1] : "";
 
   return (
     <>
-      <h1 className="font-bold text-2xl text-white mb-4 relative z-50">
+      <h1 className="font-bold text-2xl text-white mb-4  relative z-50">
         {title || "Blush of Twilight"}
       </h1>
       <TextGenerateEffect words={poem} />

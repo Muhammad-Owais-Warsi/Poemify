@@ -1,10 +1,12 @@
+import React from 'react'
 type ModalType = {
   setIsModal: (value: boolean) => void;
   url:string;
 }
 
 const ModalBox: React.FC<ModalType> = ({ setIsModal,url }) => {
-  return (
+  return <>
+  (
     <div className="flex flex-col items-center justify-center">
       <img src={url} alt="Image" />
       <button
@@ -14,7 +16,8 @@ const ModalBox: React.FC<ModalType> = ({ setIsModal,url }) => {
         Close
       </button>
     </div>
-  );
-};
+  )
+</>
+}
 
-export default ModalBox;
+// export default ModalBox 
