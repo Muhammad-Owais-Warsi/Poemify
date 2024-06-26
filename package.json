@@ -18,7 +18,9 @@
     "@types/uuid": "^9.0.8",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
+    "file-saver": "^2.0.5",
     "framer-motion": "^11.2.6",
+    "html2canvas": "^1.4.1",
     "lottie-react": "^2.3.3",
     "next": "14.2.3",
     "pako": "^2.1.0",
@@ -31,6 +33,7 @@
     "simplex-noise": "^4.0.1",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.3.0",
+    "use-react-screenshot": "^4.0.0",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

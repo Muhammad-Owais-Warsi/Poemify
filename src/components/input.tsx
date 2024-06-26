@@ -29,20 +29,25 @@ export default function Input() {
 
       const generatePoemPromise = async () => {
         try {
-          const prompt: string = `Using the provided images and text, write a rhyming poem with the following specifications:
+          const prompt: string = `You're an AI that converts images to beutiful poems.Using the provided images and text, write a rhyming poem with the following specifications:
+          Whenever after this you see a $ sign means that is a description of how the user wants the poem, so genearte poem in that 
+          context accurately as much as possible.
             - Title: Create an engaging title for the poem.
             - Poem: Write a 3-paragraph poem, each line containing 7-8 words.
+            - Give a line break after each line and end of paragraph \n
             Return the result as a JSON object with the following structure:
             {
               "title": "Your Poem Title",
-              "poem": "First paragraph of the poem.\nSecond paragraph of the poem.\nThird paragraph of the poem."
-            }`;
+              "poem": str
+            } $ 
+             Return the respone in form of [{}]`;
 
           const poem = await api.generate(
             prompt + formData.text,
             formData.images
           );
           setPoem(poem);
+          console.log(poem)
           return poem;
         } catch (error) {
           throw new Error("Error while generating a poem");
@@ -52,7 +57,7 @@ export default function Input() {
       toast.promise(generatePoemPromise(), {
         loading: "Redirecting",
         success: (data) => {
-          router.push(`/poem?data=${encodeURIComponent(JSON.stringify(data))}`); // Serialized data before passing
+          router.push(`/poem?data=${encodeURIComponent(data)}`); // Serialized data before passing
           return "Success";
         },
         error: (error) => {

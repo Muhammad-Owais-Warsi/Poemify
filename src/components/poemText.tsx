@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 
+
+interface ResponseType {
+  title:string,
+  poem:string
+}
+
 export function PoemText() {
-  const [title, setTitle] = useState("");
-  const [poem, setPoem] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [poem, setPoem] = useState<string>("");
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -11,18 +17,16 @@ export function PoemText() {
 
     if (queryData) {
       try {
-        const deserializedData = JSON.parse(decodeURIComponent(queryData));
+        const deserializedData = JSON.parse(decodeURIComponent(queryData)) as ResponseType[];
+        console.log(queryData)
 
-        const titleMatch = deserializedData.match(/"title": "([^"]+)"/);
-const title = titleMatch ? titleMatch[1] : "";
+        deserializedData.map((data:any) => {
 
-// Extracting poem
-const poemMatch = deserializedData.match(/"poem": "([^"]+)"/);
-const poem = poemMatch ? poemMatch[1] : "";
+          setTitle(data.title);
+          setPoem(data.poem);
+        })
 
 
-          setTitle(title);
-          setPoem(poem);
 
 
       } catch (error) {
