@@ -1,22 +1,43 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import {
+	FunctionDeclarationSchemaType,
+	GoogleGenerativeAI,
+} from "@google/generative-ai";
 
 class API {
     genAI: any;
 
     constructor() {
-        this.genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
+        this.genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY!);
     }
 
     async generate(prompt: string, images: string[]) {
-        const model = this.genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
+        const model = this.genAI.getGenerativeModel({
+            model: "gemini-1.5-flash",
+            generationConfig: {
+                responseMimeType: "application/json",
+                responseSchema: {
+                    type: FunctionDeclarationSchemaType.ARRAY,
+                    items: {
+                        type: FunctionDeclarationSchemaType.OBJECT,
+                        properties: {
+                            title: {
+                                type: FunctionDeclarationSchemaType.STRING,
+                            },
+                            poem: {
+                                type: FunctionDeclarationSchemaType.STRING,
+                            },
+                        },
+                    },
+                },
+            },
+        });
 
-        // Prepare the inlineData array for all images
         const inlineDataArray = images.map(image => ({
             data: image,
             mimeType: "image/jpeg"
         }));
 
-        // Include images in the request as additional context
+        
         const requestPayload = [
             { text: prompt },
             ...inlineDataArray.map((inlineData) => ({ inlineData })),
