@@ -34,13 +34,15 @@ export default function Input() {
           context accurately as much as possible.
             - Title: Create an engaging title for the poem.
             - Poem: Write a 3-paragraph poem, each line containing 7-8 words.
-            - Give a line break after each line and end of paragraph \n
+            - Give a line break after each line and end of paragraph \n.
+            - Always write in the context as mentioned in the promp.
+            - The user prompt starts after the $ sign.
             Return the result as a JSON object with the following structure:
             {
               "title": "Your Poem Title",
               "poem": str
-            } $ 
-             Return the respone in form of [{}]`;
+            } 
+             Return the respone in form of [{}] $ `;
 
           const poem = await api.generate(
             prompt + formData.text,
