@@ -1,3 +1,5 @@
+# ***************************** ARCHIVED *******************************
+
 # Poemify
 
 Poemify is an AI-powered application that transforms images into poems. This application utilizes the Gemeni API for its functionality.
